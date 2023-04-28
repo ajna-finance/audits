@@ -43,7 +43,7 @@
 | **Issue M-22**: Memorializing an NFT position on the same bucket of a previously memorialized NFT locks redemption | Fixed |
 
 ## 2. Trail Of Bits Audit (Feb 13, 2023 - April 3, 2023)
-#### Report: [Trail Of Bits Report](./tob/Ajna_Final_Report.pdf) 
+#### Report: [Trail Of Bits Report](./tob/Ajna_Final_Report+Fix_Review-4.24.2023.pdf) 
 #### Scope: [Protocol](https://github.com/ajna-finance/ajna-core) and [Grant Coordination Fund](https://github.com/ajna-finance/ajna-grants) Contracts
 #### Findings: 1 High, 1 Medium, 3 Lows
 
