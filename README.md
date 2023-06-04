@@ -7,7 +7,7 @@
 #### Findings: 11 High, 22 Medium
 
 | Finding | Severity | Resolution |
-| --- | --- |
+| --- | --- | --- |
 | **Issue H-1**: `RewardsManager` doesn't delete old bucket snapshot info on unstaking | High | Fixed |
 | **Issue H-2**: Anyone who approved quote tokens to a pool can be forced to take | High | Fixed |
 | **Issue H-3**: `CryptoPunks` NFTs may be stolen via deposit frontrunning | High | Fixed |
