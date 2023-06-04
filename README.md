@@ -69,3 +69,24 @@
 | Use defined helper functions instead of duplicating code |
 | Emit event when `Flashloan` taken |
 | In Funding.sol#L117 perform check for an invalid proposal outside the loop |
+
+## 3. Quantstamp Audit (April 24, 2023 - May 3, 2023)
+#### Report: [Quantstamp Report](./quantstamp/Ajna_Finance_Governance_-_Report.pdf)
+#### Scope: [Grant Coordination Fund](https://github.com/ajna-finance/ajna-grants) Contracts
+#### Findings: 3 High, 4 Lows, 4 Informational, 2 Undetermined
+
+| Finding | Severity | Resolution |
+| --- | --- | --- |
+| **AJN-1**: Delegate Rewards Calculation Takes Into Account All Funding Voters | High | Fixed |
+| **AJN-2**: Locked Funds Due to Non-Executable Proposals | High | Fixed |
+| **AJN-3**: Impact of Unaccounted Delegation Rewards on Treasury and GBC Calculation | High |  Fixed |
+| **AJN-4**: Gas Usage / Loop Concerns | Low |  Acknowledged |
+| **AJN-5**: Missing Input Validation | Low |  Fixed |
+| **AJN-6**: Inconsistent Time Period | Low |  Fixed |
+| **AJN-7**: Zero ERC20 Transfer | Low |  Fixed |
+| **AJN-8**: Old Version of Solidity | Informational |  Fixed |
+| **AJN-9**: Multiple Possible 0-1 Knapsack Solutions, but only the First One Gets Accepted  | Informational |  Fixed |
+| **AJN-10**: Outdated Proposal Hashing Function | Informational |  Fixed |
+| **AJN-11**: Greedy Contract | Informational |  Acknowledged |
+| **AJN-12**: Extraordinary Funding Proposal Success Condition Discrepancies | Undetermined |  Fixed |
+| **AJN-13**: Success of the Extraordinary Funding Is Susceptible to Treasury Balance Variability | Undetermined |  Fixed |
