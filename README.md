@@ -71,7 +71,7 @@
 | In Funding.sol#L117 perform check for an invalid proposal outside the loop |
 
 ## 3. Quantstamp Audit (April 24, 2023 - May 3, 2023)
-#### Report: [Quantstamp Report](./quantstamp/Ajna_Finance_Governance_-_Report.pdf)
+#### Report: [Quantstamp Report](./quantstamp/Ajna_Finance_Governance_-_Report.pdf) | [Quantstamp Certificate](https://certificate.quantstamp.com/full/ajna-finance-governance/9ef9afc2-a7ab-42d3-bfbb-a2f6695c4cac/index.html)
 #### Scope: [Grant Coordination Fund](https://github.com/ajna-finance/ajna-grants) Contracts
 #### Findings: 3 High, 4 Lows, 4 Informational, 2 Undetermined
 
