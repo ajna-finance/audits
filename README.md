@@ -50,13 +50,13 @@
 | Finding | Severity | Resolution |
 | --- | --- | --- |
 | **TOB-AJNA-1**: Solidity compiler optimizations can be problematic | Undetermined | No fix (contracts exceed spurious dragon limit) |
-| **TOB-AJNA-2**: `findIndexAndSumOfSums` ignores global scalar | Informational |  No fix, improved invariant testing |
-| **TOB-AJNA-3**: Incorrect inflator arithmetic in view functions | Low |  Fixed |
-| **TOB-AJNA-4**: Interest rates can become extreme, allowing DoS attacks | Medium |  Fixed |
-| **TOB-AJNA-5**: Older versions of external libraries are used | Informational |  `OZ` updated to 4.8.2 in contracts repo. `PRBMaths` not updated (requires code change) |
-| **TOB-AJNA-6**: Extraordinary proposal can be used to steal extraordinary amounts of Ajna | High |  Fixed |
-| **TOB-AJNA-7**: `findMechanismOfProposal` function could shadow an extraordinary proposal | Low |  Fixed |
-| **TOB-AJNA-8**: Array lengths are not checked in `LP` allowance update functions | Low |  Fixed |
+| **TOB-AJNA-2**: `findIndexAndSumOfSums` ignores global scalar | Informational | No fix, improved invariant testing |
+| **TOB-AJNA-3**: Incorrect inflator arithmetic in view functions | Low | Fixed |
+| **TOB-AJNA-4**: Interest rates can become extreme, allowing DoS attacks | Medium | Fixed |
+| **TOB-AJNA-5**: Older versions of external libraries are used | Informational | `OZ` updated to 4.8.2 in contracts repo. `PRBMaths` not updated (requires code change) |
+| **TOB-AJNA-6**: Extraordinary proposal can be used to steal extraordinary amounts of Ajna | High | Fixed |
+| **TOB-AJNA-7**: `findMechanismOfProposal` function could shadow an extraordinary proposal | Low | Fixed |
+| **TOB-AJNA-8**: Array lengths are not checked in `LP` allowance update functions | Low | Fixed |
 
 #### Improvements:
 
@@ -79,14 +79,67 @@
 | --- | --- | --- |
 | **AJN-1**: Delegate Rewards Calculation Takes Into Account All Funding Voters | High | Fixed |
 | **AJN-2**: Locked Funds Due to Non-Executable Proposals | High | Fixed |
-| **AJN-3**: Impact of Unaccounted Delegation Rewards on Treasury and GBC Calculation | High |  Fixed |
-| **AJN-4**: Gas Usage / Loop Concerns | Low |  Acknowledged |
-| **AJN-5**: Missing Input Validation | Low |  Fixed |
-| **AJN-6**: Inconsistent Time Period | Low |  Fixed |
-| **AJN-7**: Zero ERC20 Transfer | Low |  Fixed |
-| **AJN-8**: Old Version of Solidity | Informational |  Fixed |
-| **AJN-9**: Multiple Possible 0-1 Knapsack Solutions, but only the First One Gets Accepted  | Informational |  Fixed |
-| **AJN-10**: Outdated Proposal Hashing Function | Informational |  Fixed |
-| **AJN-11**: Greedy Contract | Informational |  Acknowledged |
-| **AJN-12**: Extraordinary Funding Proposal Success Condition Discrepancies | Undetermined |  Fixed |
-| **AJN-13**: Success of the Extraordinary Funding Is Susceptible to Treasury Balance Variability | Undetermined |  Fixed |
+| **AJN-3**: Impact of Unaccounted Delegation Rewards on Treasury and GBC Calculation | High | Fixed |
+| **AJN-4**: Gas Usage / Loop Concerns | Low | Acknowledged |
+| **AJN-5**: Missing Input Validation | Low | Fixed |
+| **AJN-6**: Inconsistent Time Period | Low | Fixed |
+| **AJN-7**: Zero ERC20 Transfer | Low | Fixed |
+| **AJN-8**: Old Version of Solidity | Informational | Fixed |
+| **AJN-9**: Multiple Possible 0-1 Knapsack Solutions, but only the First One Gets Accepted  | Informational | Fixed |
+| **AJN-10**: Outdated Proposal Hashing Function | Informational | Fixed |
+| **AJN-11**: Greedy Contract | Informational | Acknowledged |
+| **AJN-12**: Extraordinary Funding Proposal Success Condition Discrepancies | Undetermined | Fixed |
+| **AJN-13**: Success of the Extraordinary Funding Is Susceptible to Treasury Balance Variability | Undetermined | Fixed |
+
+## 4. Prototech Audit (April 26, 2023 - May 5, 2023)
+#### Report: [Prototech Report](./prototech/13062023-Prototech-Ajna-Audit.pdf)
+#### Scope: [Protocol Contracts](https://github.com/ajna-finance/ajna-core)
+#### Findings: 1 Critical, 3 High, 2 Medium, 15 Low, 12 Informational
+
+| Finding | Severity | Resolution |
+| --- | --- | --- |
+| **PROTOTECH-37**: Position Manager allows for stealing all LPs  | Critical | Fixed |
+| **PROTOTECH-57**: Collateral Can Be Extracted Without Redeeming LP Shares  | High | Fixed |
+| **PROTOTECH-42**: General Recommendation: Rounding In Favor of the Interacting User Is Dangerous | High | Fixed |
+| **PROTOTECH-39**: Pools round against themselves and in favor of borrower | High | Fixed |
+| **PROTOTECH-46**: Unsafe casts in KickerActions | Medium | Fixed |
+| **PROTOTECH-18**: Missing Scaling for ERC-721 Pools’ Quote Token on repayment | Medium | Fixed |
+| **PROTOTECH-55**: Extremely large debt positions could prevent new borrowers to a pool while severely limiting existing borrowers | Low | Acknowledged |
+| **PROTOTECH-53**: Large position size may discourage kicking because of the resulting large bond size | Low | Acknowledged |
+| **PROTOTECH-51**: Limitations on NFT subset pool size | Low | Acknowledged |
+| **PROTOTECH-50**: TokenIdsAllowed returns false for eligible Collection Pool NFT’s | Low | Fixed |
+| **PROTOTECH-49**: .decimals() is an optional feature of ERC20 | Low | Fixed |
+| **PROTOTECH-45**: Revert after instead of on expire_ | Low | Fixed |
+| **PROTOTECH-44**: Unsafe Casts In RewardsManager | Low | Fixed |
+| **PROTOTECH-43**: PositionManager.moveLiquidity() May Leave Internal State Inconsistent  | Low | Fixed |
+| **PROTOTECH-38**: Loan Origination Fee Has Extreme Values At High Interest Rates | Low | Acknowledged |
+| **PROTOTECH-20**: New Borrower Debt overcounted with < 18 decimal Quote Tokens  | Low | Fixed |
+| **PROTOTECH-19**: removeCollateral can be used to bypass dust protection check in addCollateral | Low | Fixed |
+| **PROTOTECH-17**: Non-18 Decimal Quote Token Debt cannot be FULLY repaid as expected  | Low | Fixed |
+| **PROTOTECH-16**: Any Address Can Execute memorializePositions For Another Address | Low | Fixed |
+| **PROTOTECH-14**: Correction to Meaningful Deposit for In-Auction Debt Neglects Inflator | Low | Fixed |
+| **PROTOTECH-12**: Below-LUP Deposit Fee Has Extreme Values At High Interest Rates | Low | Fixed |
+| **PROTOTECH-56**: Think through the various implications block.timestamp and network downtime | Informational | Acknowledged |
+| **PROTOTECH-52**: Streamline NFT Collection Pool Creation | Informational | Fixed |
+| **PROTOTECH-35**: Code Improvement: consider implementing isValidSignature directly | Informational | Fixed |
+| **PROTOTECH-33**: isValidSignature doesn’t check for well formed signature | Informational | Fixed |
+| **PROTOTECH-32**: Code clean up - RewardsManager Reentrancy Guard | Informational | Fixed |
+| **PROTOTECH-31**: Code Redundancy: ERC721 is inherited multiple times in PositionManager | Informational | Fixed |
+| **PROTOTECH-29**: Code Inconsistency: PermitERC721 uses require where elsewhere custom errors are adopted  | Informational | Fixed |
+| **PROTOTECH-27**: ERC Compliance: PermitERC721 and PositionManager implementations doesn’t match with ERC-4494 | Informational | Fixed |
+| **PROTOTECH-26**: Reserve Auction DOS Attack | Informational | Acknowledged |
+| **PROTOTECH-25**: Unit Tests & non-18 decimals tokens | Informational | Acknowledged |
+| **PROTOTECH-23**: Solidity Version: consider 0.8.16-0.8.18 for deployment | Informational | Fixed |
+| **PROTOTECH-47**: Avoid param structs/tuples on external functions | Informational | Fixed |
+
+#### Improvements:
+
+| Finding | Category | Resolution |
+| --- | --- | --- |
+| **PROTOTECH-54**: Consider checking token id sort order in the pool | Gas Optimization | Acknowledged |
+| **PROTOTECH-48**: Consider granularizing Info functions | Gas Optimization | Acknowledged |
+| **PROTOTECH-36**: Consider removing redundant check in PermitERC721 | Gas Optimization | Fixed |
+| **PROTOTECH-28**: Consider using block.chainid instead of inline assembly chainid | Gas Optimization | Fixed |
+| **PROTOTECH-21**: bytes32ToString can be improved to reduce gas costs | Gas Optimization | Fixed |
+| **PROTOTECH-34**: Informational Non-security Code Changes/Recommendations  | Code Quality | Fixed |
+| **PROTOTECH-59**: Consider declaring RAY constant directly | Code Quality | Fixed |
