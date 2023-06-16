@@ -98,8 +98,8 @@
 
 | Finding | Severity | Resolution |
 | --- | --- | --- |
-| **PROTOTECH-37**: Position Manager allows for stealing all LPs  | Critical | Fixed |
-| **PROTOTECH-57**: Collateral Can Be Extracted Without Redeeming LP Shares  | High | Fixed |
+| **PROTOTECH-37**: Position Manager allows for stealing all LPs | Critical | Fixed |
+| **PROTOTECH-57**: Collateral Can Be Extracted Without Redeeming LP Shares | High | Fixed |
 | **PROTOTECH-42**: General Recommendation: Rounding In Favor of the Interacting User Is Dangerous | High | Fixed |
 | **PROTOTECH-39**: Pools round against themselves and in favor of borrower | High | Fixed |
 | **PROTOTECH-46**: Unsafe casts in KickerActions | Medium | Fixed |
@@ -143,3 +143,38 @@
 | **PROTOTECH-21**: bytes32ToString can be improved to reduce gas costs | Gas Optimization | Fixed |
 | **PROTOTECH-34**: Informational Non-security Code Changes/Recommendations  | Code Quality | Fixed |
 | **PROTOTECH-59**: Consider declaring RAY constant directly | Code Quality | Fixed |
+
+## 5. Code4rena Audit (May 3, 2023 - May 11, 2023)
+#### Report: [Code4rena Report](./code4rena/2023-05-ajna-draft-report.md)
+#### Scope: [Core Position & Rewards Manager](https://github.com/ajna-finance/ajna-core) and [Grant Coordination Fund](https://github.com/ajna-finance/ajna-grants) Contracts
+#### Findings: 11 High, 14 Medium, 54 Low
+
+*Note*: Grant fund extraordinary mechanism and move staked liquidity functionalities were reevaluated and removed
+
+| Finding | Severity | Resolution |
+| --- | --- | --- |
+| **H-01**: PositionManager's moveLiquidity can freeze funds by removing destination index even when the move was partial | High | Fixed |
+| **H-02**: PositionManager's moveLiquidity can set wrong deposit time and permanently freeze LP funds moved | High | Fixed |
+| **H-03**: Position NFT can be spammed with insignificant positions by anyone until rewards DoS | High | Fixed |
+| **H-04**: Delegation rewards are not counted toward granting fund | High | Fixed |
+| **H-05**: Incorrect calculation of the remaining updatedRewards leads to possible underflow error | High | Fixed |
+| **H-06**: The lender could possibly lose unclaimed rewards in case a bucket goes bankrupt | High | Acknowledged |
+| **H-07**: User can exponentially increase the value of their position through the memorializePositions function | High | Fixed |
+| **H-08**: Claiming accumulated rewards while the contract is underfunded can lead to a loss of rewards | High | Fixed |
+| **H-09**: User can avoid bankrupting by calling PositionManager.moveLiquidity where to index is bankrupted index | High | Fixed |
+| **H-10**: missing isEpochClaimed validation | High | Fixed |
+| **H-11**: RewardsManager fails to validate pool_ when updating exchange rates allowing rewards to be drained | High | Fixed |
+| **M-01**: It is possible to steal the unallocated part of every delegation period budget | Medium | Fixed |
+| **M-02**: Delegate rewards system is unfair to delegates with less tokens and reduces decentralization | Medium | Fixed |
+| **M-03**: _updateBucketExchangeRateAndCalculateRewards reward calculation accuracy loss | Medium | Fixed |
+| **M-04**: Potential unfair distribution of Rewards due to MEV in updateBucketExchangeRatesAndClaim | Medium | Acknowledged |
+| **M-05**: Calculating new rewards is susceptible to precision loss due to division before multiplication | Medium | Fixed |
+| **M-06**: An Optimizer Bug in PositionManager.getPositionIndexesFiltered | Medium | Fixed |
+| **M-07**: StandardFunding.screeningVote function and ExtraordinaryFunding.voteExtraordinary function when block.number equals respective start block and when block.number is bigger than respective start block can result in different available votes for same voter | Medium | Fixed |
+| **M-08**: The voting thresholds in Ajna's Extraordinary Funding Mechanism can be manipulated to execute proposals below the expected threshold | Medium | Fixed |
+| **M-09**: Adversary can prevent the creation of any extraordinary funding proposal by frontrunning proposeExtraordinary() | Medium | Fixed |
+| **M-10**: Unsafe casting from uint256 to uint128 in RewardsManager | Medium | Fixed |
+| **M-11**: StandardFunding.fundingVote should not allow users who didn't vote in screening stage to vote | Medium | Fixed |
+| **M-12**: Governance attack on Extraordinary Proposals | Medium | Fixed |
+| **M-13**: PositionManager & PermitERC721 Failure to comply with the EIP-4494 | Medium | Fixed |
+| **M-14**: PositionManager.moveLiquidity could revert due to underflow | Medium | Fixed |
