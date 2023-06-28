@@ -178,3 +178,33 @@
 | **M-12**: Governance attack on Extraordinary Proposals | Medium | Fixed |
 | **M-13**: PositionManager & PermitERC721 Failure to comply with the EIP-4494 | Medium | Fixed |
 | **M-14**: PositionManager.moveLiquidity could revert due to underflow | Medium | Fixed |
+| **QA-1**: CHALLENGE_PERIOD_LENGTH, DISTRIBUTION_PERIOD_LENGTH, FUNDING_PERIOD_LENGTH, AND MAX_EFM_PROPOSAL_LENGTH ARE HARDCODED BASED ON 7200 BLOCKS PER DAY | QA | Acknowledged |
+| **QA-2**: AMBIGUITY IN StandardFunding._standardProposalState FUNCTION | QA | Fixed |
+| **QA-3**: ExtraordinaryFundingProposal.votesReceived IN ExtraordinaryFunding CONTRACT IS uint120 INSTEAD OF uint128 | QA | Fixed |
+| **QA-4**: CALLING ExtraordinaryFunding.proposeExtraordinary AND StandardFunding.proposeStandard FUNCTIONS CAN REVERT AND WASTE GAS | QA | Invalid |
+| **QA-5**: ajnaTokenAddress IS HARDCODED | QA | Acknowledged |
+| **QA-6**: CODE COMMENT IN ExtraordinaryFunding._extraordinaryProposalSucceeded FUNCTION CAN BE INCORRECT | QA | Fixed |
+| **QA-7**: CODE COMMENT FOR CHALLENGE_PERIOD_LENGTH CAN BE MORE ACCURATE | QA | Fixed |
+| **QA-8**: MISSING address(0) CHECKS FOR CRITICAL CONSTRUCTOR INPUTS | QA | Fixed |
+| **QA-9**: SOLIDITY VERSION 0.8.19 CAN BE USED | QA | Acknowledged |
+| **QA-10**: SETTING support TO 1 WHEN voteParams_.votesUsed < 0 IS FALSE IN StandardFunding._fundingVote FUNCTION IS REDUNDANT | QA | Acknowledged |
+| **QA-11**: REDUNDANT EXECUTION OF if (sumOfTheSquareOfVotesCast > type(uint128).max) revert InsufficientVotingPower() IN StandardFunding._fundingVote FUNCTION | QA | Fixed |
+| **QA-12**: InvalidVote ERROR CAN BE MORE DESCRIPTIVE | QA | Acknowledged |
+| **QA-13**: CONSTANTS CAN BE USED INSTEAD OF MAGIC NUMBERS | QA | Acknowledged |
+| **QA-14**: UNDERSCORES CAN BE ADDED FOR NUMBERS | QA | Fixed |
+| **QA-15**: uint256 CAN BE USED INSTEAD OF uint | QA | Fixed |
+| **QA-16**: SPACES CAN BE ADDED FOR BETTER READABILITY | QA | Fixed |
+| **G-1**: Use calldata instead of memory for function arguments that do not get mutated | Gas | Fixed |
+| **G-2**: State variables can be cached instead of re-reading them from storage | Gas | Fixed |
+| **G-3**: Refactor internal function to avoid unnecessary SLOAD | Gas | Fixed |
+| **G-4**: Using storage instead of memory for structs/arrays saves gas | Gas | Fixed |
+| **G-5**: Avoid emitting storage values | Gas | Acknowledged |
+| **G-6**: Multiple accesses of a mapping/array should use a storage pointer | Gas | Fixed |
+| **G-7**: Multiple address mappings can be combined into a single mapping of an address to a struct, where appropriate | Gas | Fixed |
+| **G-8**: Usage of uints/ints smaller than 32 bytes (256 bits) incurs overhead | Gas | Acknowledged |
+| **G-9**: Use do while loops instead of for loops | Gas | Acknowledged |
+| **G-10**: Use assembly to perform efficient back-to-back calls | Gas | Acknowledged |
+| **G-11**: Refactor event to avoid emitting data that is already present in transaction data | Gas | Acknowledged |
+| **G-12**: Refactor event to avoid emitting empty data | Gas | Acknowledged |
+| **G-13**: Hash proposal values offchain | Gas | Acknowledged |
+| **G-14**: Sort array offchain to check duplicates in O(n) instead of O(n^2) | Gas | Acknowledged |
