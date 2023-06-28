@@ -1200,7 +1200,14 @@ In point 1, it checks if there is a previous deposit and the bucket went bankrup
 
 On memorializePositions, check if the lender already claimed his/her rewards before zeroing out the previous tracked LP.
 
-**[MikeHathaway (Ajna) acknowledged](https://github.com/code-423n4/2023-05-ajna-findings/issues/329#issuecomment-1555134578)**
+**[ith-harvey (Ajna) disputed](https://github.com/code-423n4/2023-05-ajna-findings/issues/329#issuecomment-1608467083)**
+
+**[grandizzy (Ajna) commented](https://github.com/code-423n4/2023-05-ajna-findings/issues/329#issuecomment-1609466700):**
+> That is by design and we acknowledge that documentation of bucket bankruptcy can be improved. When a bucket goes bankrupt (which shouldn't happen often but only when there's bad debt in pool to settle) the lender won't lose only their rewards but will also lose all the shares in that bucket / LP (which has higher impact than rewards).<br>
+> Also the recommendation of:<br>
+> `On memorializePositions, check if the lender already claimed his/her rewards before zeroing out the previous tracked LP.`
+> 
+> Would imply making position manager contract aware of rewards manager contract and we don't want to couple those 2 in reference implementation. However, additional position and rewards manager could be developed by 3rd parties and could take into consideration this recommendation.
 
 
 
@@ -1833,7 +1840,13 @@ Check if the isEpochClaime is true and revert in the \_claimReward function
 
     if (isEpochClaimed[tokenId_][epochToClaim_]) revert AlreadyClaimed();
 
-**[MikeHathaway (Ajna) confirmed via duplicate issue `#316`](https://github.com/code-423n4/2023-05-ajna-findings/issues/316#issuecomment-1555129740)**
+**[ith-harvey (Ajna) disputed and commented](https://github.com/code-423n4/2023-05-ajna-findings/issues/132#issuecomment-1611598236):**
+> The series of calls they are suggesting are possible:<br>
+> stake<br>
+> claimRewards() -> get rewards<br>
+> moveStakedLiquidity() ->  get rewards
+> 
+> They should not be able to get these rewards because `_calculateAndClaimRewards()` iterates from last claimed epoch.
 
 
 
