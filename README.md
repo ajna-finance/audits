@@ -91,7 +91,7 @@
 | **AJN-12**: Extraordinary Funding Proposal Success Condition Discrepancies | Undetermined | Fixed |
 | **AJN-13**: Success of the Extraordinary Funding Is Susceptible to Treasury Balance Variability | Undetermined | Fixed |
 
-## 4. Prototech Audit (April 26, 2023 - May 5, 2023)
+## 4. Prototech Audit (April 26, 2023 - June 5, 2023)
 #### Report: [Prototech Report](./prototech/13062023-Prototech-Ajna-Audit.pdf)
 #### Scope: [Protocol Contracts](https://github.com/ajna-finance/ajna-core)
 #### Findings: 1 Critical, 3 High, 2 Medium, 15 Low, 12 Informational
