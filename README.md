@@ -181,7 +181,7 @@
 | **QA-1**: CHALLENGE_PERIOD_LENGTH, DISTRIBUTION_PERIOD_LENGTH, FUNDING_PERIOD_LENGTH, AND MAX_EFM_PROPOSAL_LENGTH ARE HARDCODED BASED ON 7200 BLOCKS PER DAY | QA | Acknowledged |
 | **QA-2**: AMBIGUITY IN StandardFunding._standardProposalState FUNCTION | QA | Fixed |
 | **QA-3**: ExtraordinaryFundingProposal.votesReceived IN ExtraordinaryFunding CONTRACT IS uint120 INSTEAD OF uint128 | QA | Fixed |
-| **QA-4**: CALLING ExtraordinaryFunding.proposeExtraordinary AND StandardFunding.proposeStandard FUNCTIONS CAN REVERT AND WASTE GAS | QA | Invalid |
+| **QA-4**: CALLING ExtraordinaryFunding.proposeExtraordinary AND StandardFunding.proposeStandard FUNCTIONS CAN REVERT AND WASTE GAS | QA | Acknowledged |
 | **QA-5**: ajnaTokenAddress IS HARDCODED | QA | Acknowledged |
 | **QA-6**: CODE COMMENT IN ExtraordinaryFunding._extraordinaryProposalSucceeded FUNCTION CAN BE INCORRECT | QA | Fixed |
 | **QA-7**: CODE COMMENT FOR CHALLENGE_PERIOD_LENGTH CAN BE MORE ACCURATE | QA | Fixed |
