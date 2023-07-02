@@ -1,7 +1,7 @@
 ---
 sponsor: "Ajna Protocol"
 slug: "2023-05-ajna"
-date: "2023-06-⭕"  # the date this report is published to the C4 website
+date: "2023-06-29"
 title: "Ajna Protocol"
 findings: "https://github.com/code-423n4/2023-05-ajna-findings/issues"
 contest: 234
@@ -3972,18 +3972,14 @@ For this audit, 39 reports were submitted by wardens detailing low risk and non-
 | [02] | AMBIGUITY IN `StandardFunding._standardProposalState` FUNCTION |
 | [03] | `ExtraordinaryFundingProposal.votesReceived` IN `ExtraordinaryFunding` CONTRACT IS `uint120` INSTEAD OF `uint128` |
 | [04] | CALLING `ExtraordinaryFunding.proposeExtraordinary` AND `StandardFunding.proposeStandard` FUNCTIONS CAN REVERT AND WASTE GAS |
-| [05] | `ajnaTokenAddress` IS HARDCODED |
-| [06] | CODE COMMENT IN `ExtraordinaryFunding._extraordinaryProposalSucceeded` FUNCTION CAN BE INCORRECT |
-| [07] | CODE COMMENT FOR `CHALLENGE_PERIOD_LENGTH` CAN BE MORE ACCURATE |
-| [08] | MISSING `address(0)` CHECKS FOR CRITICAL CONSTRUCTOR INPUTS |
-| [09] | SOLIDITY VERSION `0.8.19` CAN BE USED |
-| [10] | SETTING `support` TO `1` WHEN `voteParams_.votesUsed < 0` IS FALSE IN `StandardFunding._fundingVote` FUNCTION IS REDUNDANT |
-| [11] | REDUNDANT EXECUTION OF `if (sumOfTheSquareOfVotesCast > type(uint128).max) revert InsufficientVotingPower()` IN `StandardFunding._fundingVote` FUNCTION |
-| [12] | `InvalidVote` ERROR CAN BE MORE DESCRIPTIVE |
-| [13] | CONSTANTS CAN BE USED INSTEAD OF MAGIC NUMBERS |
-| [14] | UNDERSCORES CAN BE ADDED FOR NUMBERS |
-| [15] | `uint256` CAN BE USED INSTEAD OF `uint` |
-| [16] | SPACES CAN BE ADDED FOR BETTER READABILITY |
+| [05] | CODE COMMENT IN `ExtraordinaryFunding._extraordinaryProposalSucceeded` FUNCTION CAN BE INCORRECT |
+| [06] | CODE COMMENT FOR `CHALLENGE_PERIOD_LENGTH` CAN BE MORE ACCURATE |
+| [07] | SETTING `support` TO `1` WHEN `voteParams_.votesUsed < 0` IS FALSE IN `StandardFunding._fundingVote` FUNCTION IS REDUNDANT |
+| [08] | REDUNDANT EXECUTION OF `if (sumOfTheSquareOfVotesCast > type(uint128).max) revert InsufficientVotingPower()` IN `StandardFunding._fundingVote` FUNCTION |
+| [09] | `InvalidVote` ERROR CAN BE MORE DESCRIPTIVE |
+| [10] | UNDERSCORES CAN BE ADDED FOR NUMBERS |
+| [11] | `uint256` CAN BE USED INSTEAD OF `uint` |
+| [12] | SPACES CAN BE ADDED FOR BETTER READABILITY |
 
 ## [01] `CHALLENGE_PERIOD_LENGTH`, `DISTRIBUTION_PERIOD_LENGTH`, `FUNDING_PERIOD_LENGTH`, AND `MAX_EFM_PROPOSAL_LENGTH` ARE HARDCODED BASED ON 7200 BLOCKS PER DAY
 The following `CHALLENGE_PERIOD_LENGTH`, `DISTRIBUTION_PERIOD_LENGTH`, `FUNDING_PERIOD_LENGTH`, and `MAX_EFM_PROPOSAL_LENGTH` are hardcoded and assume that the number of blocks per day is 7200 and the number of seconds per block is 12. Yet, it is possible that the number of seconds per block is more or less than 12 due to network traffic and future chain upgrades. When the number of seconds per block is no longer 12, the durations corresponding to `CHALLENGE_PERIOD_LENGTH`, `DISTRIBUTION_PERIOD_LENGTH`, `FUNDING_PERIOD_LENGTH`, and `MAX_EFM_PROPOSAL_LENGTH` are no longer 7, 90, 10, and 30 days, which break the duration specifications for various phases. This can cause unexpectedness to users; for example, when the duration for `FUNDING_PERIOD_LENGTH` becomes less than 10 days, a user, who expects that she or he could vote on the 10th day, can fail to vote unexpectedly on that 10th day. To avoid unexpectedness and disputes, please consider using `block.timestamp` instead of blocks for defining durations for various phases in the `StandardFunding` and `ExtraordinaryFunding` contracts.
@@ -4166,15 +4162,7 @@ https://github.com/code-423n4/2023-05-ajna/blob/main/ajna-grants/src/grants/base
     }
 ```
 
-## [05] `ajnaTokenAddress` IS HARDCODED
-The following `ajnaTokenAddress` is hardcoded. It is not AJNA's address on chains like Polygon, Arbitrum, and Optimism. This means that the functionalities that rely on `ajnaTokenAddress` will break on these chains in which the `GrantFund` contract, which inherits the `Funding` contract, cannot be used on these chains. To be more future-proofed, please consider adding a function that is only callable by the trusted admin for updating `ajnaTokenAddress` instead of relying on a hardcoded `ajnaTokenAddress`.
-
-https://github.com/code-423n4/2023-05-ajna/blob/main/ajna-grants/src/grants/base/Funding.sol#L21
-```solidity
-    address public immutable ajnaTokenAddress = 0x9a96ec9B57Fb64FbC60B423d1f4da7691Bd35079;
-```
-
-## [06] CODE COMMENT IN `ExtraordinaryFunding._extraordinaryProposalSucceeded` FUNCTION CAN BE INCORRECT
+## [05] CODE COMMENT IN `ExtraordinaryFunding._extraordinaryProposalSucceeded` FUNCTION CAN BE INCORRECT
 In the following `ExtraordinaryFunding._extraordinaryProposalSucceeded` function, the comment for `(votesReceived >= tokensRequested_ + _getSliceOfNonTreasury(minThresholdPercentage))` is `succeeded if proposal's votes received doesn't exceed the minimum threshold required`. However, `(votesReceived >= tokensRequested_ + _getSliceOfNonTreasury(minThresholdPercentage))` can only be true when the proposal's votes received meet or exceed such minimum threshold, which is the opposite of the comment. To prevent confusion, please consider updating the comment to match the corresponding code.
 
 https://github.com/code-423n4/2023-05-ajna/blob/main/ajna-grants/src/grants/base/ExtraordinaryFunding.sol#L164-L178
@@ -4196,7 +4184,7 @@ https://github.com/code-423n4/2023-05-ajna/blob/main/ajna-grants/src/grants/base
     }
 ```
 
-## [07] CODE COMMENT FOR `CHALLENGE_PERIOD_LENGTH` CAN BE MORE ACCURATE
+## [06] CODE COMMENT FOR `CHALLENGE_PERIOD_LENGTH` CAN BE MORE ACCURATE
 The challenge phase starts after the time for `DISTRIBUTION_PERIOD_LENGTH` is finished. The time for `CHALLENGE_PERIOD_LENGTH` is more of an addition to the distribution period instead of part of the distribution period. Thus, describing `CHALLENGE_PERIOD_LENGTH` as `Length of the challengephase of the distribution period` given that `DISTRIBUTION_PERIOD_LENGTH` is described as `Length of the distribution period` is somewhat misleading. To avoid confusion, the comment for `CHALLENGE_PERIOD_LENGTH` can be updated to indicate that `CHALLENGE_PERIOD_LENGTH` is not included in `DISTRIBUTION_PERIOD_LENGTH`.
 
 https://github.com/code-423n4/2023-05-ajna/blob/main/ajna-grants/src/grants/base/StandardFunding.sol#L29-L34
@@ -4218,61 +4206,7 @@ https://github.com/code-423n4/2023-05-ajna/blob/main/ajna-grants/src/grants/base
     uint48 internal constant DISTRIBUTION_PERIOD_LENGTH = 648000;
 ```
 
-## [08] MISSING `address(0)` CHECKS FOR CRITICAL CONSTRUCTOR INPUTS
-To prevent unintended behaviors, critical constructor inputs should be checked against `address(0)`.
-
-`address(0)` checks are missing for `erc20Factory_` and `erc721Factory_` in the following constructor. Please consider checking them.
-
-https://github.com/code-423n4/2023-05-ajna/blob/main/ajna-core/src/PositionManager.sol#L116-L122
-```solidity
-    constructor(
-        ERC20PoolFactory erc20Factory_,
-        ERC721PoolFactory erc721Factory_
-    ) PermitERC721("Ajna Positions NFT-V1", "AJNA-V1-POS", "1") {
-        erc20PoolFactory  = erc20Factory_;
-        erc721PoolFactory = erc721Factory_;
-    }
-```
-
-`address(0)` check is missing for `positionManager_` in the following constructor. Please consider checking it.
-
-https://github.com/code-423n4/2023-05-ajna/blob/main/ajna-core/src/RewardsManager.sol#L95-L100
-```solidity
-    constructor(address ajnaToken_, IPositionManager positionManager_) {
-        if (ajnaToken_ == address(0)) revert DeployWithZeroAddress();
-
-        ajnaToken = ajnaToken_;
-        positionManager = positionManager_;
-    }
-```
-
-## [09] SOLIDITY VERSION `0.8.19` CAN BE USED
-Using the more updated version of Solidity can enhance security. As described in https://github.com/ethereum/solidity/releases, Version `0.8.19` is the latest version of Solidity, which "contains a fix for a long-standing bug that can result in code that is only used in creation code to also be included in runtime bytecode". To be more secured and more future-proofed, please consider using Version `0.8.19` for the following contracts.
-
-```solidity
-ajna-core\src\PositionManager.sol
-  3: pragma solidity 0.8.14;
-
-ajna-core\src\RewardsManager.sol
-  3: pragma solidity 0.8.14;
-
-ajna-grants\src\grants\GrantFund.sol
-  3: pragma solidity 0.8.16;
-
-ajna-grants\src\grants\base\ExtraordinaryFunding.sol
-  3: pragma solidity 0.8.16;
-
-ajna-grants\src\grants\base\Funding.sol
-  3: pragma solidity 0.8.16;
-
-ajna-grants\src\grants\base\StandardFunding.sol
-  3: pragma solidity 0.8.16;
-
-ajna-grants\src\grants\libraries\Maths.sol
-  2: pragma solidity 0.8.16;
-```
-
-## [10] SETTING `support` TO `1` WHEN `voteParams_.votesUsed < 0` IS FALSE IN `StandardFunding._fundingVote` FUNCTION IS REDUNDANT
+## [07] SETTING `support` TO `1` WHEN `voteParams_.votesUsed < 0` IS FALSE IN `StandardFunding._fundingVote` FUNCTION IS REDUNDANT
 When calling the following `StandardFunding._fundingVote` function, `uint8 support = 1` is executed before `voteParams_.votesUsed < 0 ? support = 0 : support = 1`. Therefore, when `voteParams_.votesUsed < 0` is false, `support` does not need to be set to `1` again. Please consider refactoring the code to only update `support` to `0` when `voteParams_.votesUsed < 0` is true.
 
 https://github.com/code-423n4/2023-05-ajna/blob/main/ajna-grants/src/grants/base/StandardFunding.sol#L612-L690
@@ -4293,7 +4227,7 @@ https://github.com/code-423n4/2023-05-ajna/blob/main/ajna-grants/src/grants/base
     }
 ```
 
-## [11] REDUNDANT EXECUTION OF `if (sumOfTheSquareOfVotesCast > type(uint128).max) revert InsufficientVotingPower()` IN `StandardFunding._fundingVote` FUNCTION
+## [08] REDUNDANT EXECUTION OF `if (sumOfTheSquareOfVotesCast > type(uint128).max) revert InsufficientVotingPower()` IN `StandardFunding._fundingVote` FUNCTION
 The following `StandardFunding._fundingVote` function executes `if (sumOfTheSquareOfVotesCast > type(uint128).max) revert InsufficientVotingPower()` before `uint128 cumulativeVotePowerUsed = SafeCast.toUint128(sumOfTheSquareOfVotesCast)`. Because calling the `SafeCast.toUint128` function below would revert when `sumOfTheSquareOfVotesCast > type(uint128).max` is true, executing `if (sumOfTheSquareOfVotesCast > type(uint128).max) revert InsufficientVotingPower()` becomes redundant. Please consider removing `if (sumOfTheSquareOfVotesCast > type(uint128).max) revert InsufficientVotingPower()` from the `StandardFunding._fundingVote` function.
 
 https://github.com/code-423n4/2023-05-ajna/blob/main/ajna-grants/src/grants/base/StandardFunding.sol#L612-L690
@@ -4323,7 +4257,7 @@ https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/uti
     }
 ```
 
-## [12] `InvalidVote` ERROR CAN BE MORE DESCRIPTIVE
+## [09] `InvalidVote` ERROR CAN BE MORE DESCRIPTIVE
 The following `StandardFunding.fundingVote` and `StandardFunding.screeningVote` functions can revert with the `InvalidVote` error for various reasons. Yet, executing `revert InvalidVote()` does not describe the specific reason. To be more descriptive and user-friendly, please consider updating the `InvalidVote` error so it can provide the reason why calling the corresponding function reverts.
 
 https://github.com/code-423n4/2023-05-ajna/blob/main/ajna-grants/src/grants/base/StandardFunding.sol#L519-L569
@@ -4374,19 +4308,7 @@ https://github.com/code-423n4/2023-05-ajna/blob/main/ajna-grants/src/grants/base
     }
 ```
 
-## [13] CONSTANTS CAN BE USED INSTEAD OF MAGIC NUMBERS
-( Please note that the following instances are not found in https://gist.github.com/CloudEllie/a4655b833548ed9a86a63eb7292bcc0f#n04-constants-should-be-defined-rather-than-using-magic-numbers. )
-
-To improve readability and maintainability, a constant can be used instead of the magic number. Please consider replacing the magic numbers, such as `2`, used in the following code with constants.
-
-```solidity
-ajna-grants\src\grants\base\StandardFunding.sol
-  292: ) / 10;
-  849: votesCastSumSquared_ += Maths.wpow(SafeCast.toUint256(Maths.abs(votesCast_[i].votesUsed)), 2);
-  908: ), 2);
-```
-
-## [14] UNDERSCORES CAN BE ADDED FOR NUMBERS
+## [10] UNDERSCORES CAN BE ADDED FOR NUMBERS
 It is a common practice to separate each 3 digits in a number by an underscore to improve code readability. Unlike `MAX_EFM_PROPOSAL_LENGTH` below, the following `CHALLENGE_PERIOD_LENGTH`, `DISTRIBUTION_PERIOD_LENGTH`, and `FUNDING_PERIOD_LENGTH` do not use underscores; please consider adding underscores for these numbers.
 
 https://github.com/code-423n4/2023-05-ajna/blob/main/ajna-grants/src/grants/base/StandardFunding.sol#L34
@@ -4409,7 +4331,7 @@ https://github.com/code-423n4/2023-05-ajna/blob/main/ajna-grants/src/grants/base
     uint256 internal constant MAX_EFM_PROPOSAL_LENGTH = 216_000; // number of blocks in one month
 ```
 
-## [15] `uint256` CAN BE USED INSTEAD OF `uint`
+## [11] `uint256` CAN BE USED INSTEAD OF `uint`
 Both `uint` and `uint256` are used in the protocol's code. In favor of explicitness, please consider using `uint256` instead of `uint` in the following code.
 
 ```solidity
@@ -4422,7 +4344,7 @@ ajna-grants\src\grants\base\StandardFunding.sol
   491: for (uint i = 0; i < proposalIdSubset_.length;) {
 ```
 
-## [16] SPACES CAN BE ADDED FOR BETTER READABILITY
+## [12] SPACES CAN BE ADDED FOR BETTER READABILITY
 For better readability, spaces can be added in code where appropriate.
 
 A space can be added between `challenge` and `phase` in the following comment.<br>
@@ -4468,7 +4390,7 @@ For this audit, 32 reports were submitted by wardens detailing gas optimizations
 ## Summary
 A majority of the optimizations were benchmarked via the protocol's tests, i.e. using the following config for `ajna-core`: `solc version 0.8.14`, `optimizer on`, `500 runs` and the following config for `ajna-grants`: `solc version 0.8.16`, `optimizer on`, `1000000 runs`. Optimizations that were not benchmarked are explained via EVM gas costs and opcodes.
 
-Below are the overall average gas savings for the following tested functions, with all the optimizations applied (not including G-11, G-12, G-13, and G-14):
+Below are the overall average gas savings for the following tested functions, with all the optimizations applied (not including G-11, G-12, and G-14):
 | Function |    Before   |    After   | Avg Gas Savings |
 | ------ | -------- | -------- | ------- |
 | GrantFund.claimDelegateReward |  65340  |  42268  | 23072 | 
@@ -4512,8 +4434,7 @@ Below are the overall average gas savings for the following tested functions, wi
 | [G-10] | Use assembly to perform efficient back-to-back calls | 2 |
 | [G-11] | Refactor event to avoid emitting data that is already present in transaction data | 2 |
 | [G-12] | Refactor event to avoid emitting empty data | 5 |
-| [G-13] | Hash proposal values offchain | - |
-| [G-14] | Sort array offchain to check duplicates in O(n) instead of O(n^2) | 1 |
+| [G-13] | Sort array offchain to check duplicates in O(n) instead of O(n^2) | 1 |
 
 ## [G-01] Use calldata instead of memory for function arguments that do not get mutated
 When you specify a data location as `memory`, that value will be copied into memory. When you specify the location as `calldata`, the value will stay static within calldata. If the value is a large, complex type, using `memory` may result in extra memory expansion costs.
@@ -7331,24 +7252,7 @@ File: ajna-grants/src/grants/base/StandardFunding.sol
 403:        );
 ```
 
-## [G-13] Hash proposal values offchain
-Any computation that can be done offchain should be done offchain. The `_hashProposal` internal function is invoked via various core functions. This internal function is very expensive as it loads 3 arrays from calldata into memory (incurring MLOADs + memory expansion costs) and hashes all the values together. I would recommend performing the hashing offline and passing the hash as calldata to the necessary functions.
-
-https://github.com/code-423n4/2023-05-ajna/blob/main/ajna-grants/src/grants/base/Funding.sol#L152-L159
-
-```solidity
-File: ajna-grants/src/grants/base/Funding.sol
-152:    function _hashProposal(
-153:        address[] memory targets_,
-154:        uint256[] memory values_,
-155:        bytes[] memory calldatas_,
-156:        bytes32 descriptionHash_
-157:    ) internal pure returns (uint256 proposalId_) {
-158:        proposalId_ = uint256(keccak256(abi.encode(targets_, values_, calldatas_, descriptionHash_)));
-159:    }
-```
-
-## [G-14] Sort array offchain to check duplicates in O(n) instead of O(n^2)
+## [G-13] Sort array offchain to check duplicates in O(n) instead of O(n^2)
 Instead of using two for loops to check for duplicates, which runs in O(n^2) time and is expensive, the `proposalIds_` array can be sorted offchain which allows us to to check duplicates by simply ensuring the the current `id` is larger than the previous one (O(n) time).
 
 https://github.com/code-423n4/2023-05-ajna/blob/main/ajna-grants/src/grants/base/StandardFunding.sol#L463-L479

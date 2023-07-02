@@ -145,7 +145,7 @@
 | **PROTOTECH-59**: Consider declaring RAY constant directly | Code Quality | Fixed |
 
 ## 5. Code4rena Audit (May 3, 2023 - May 11, 2023)
-#### Report: [Code4rena Report](./code4rena/2023-05-ajna-draft-report.md)
+#### Report: [Code4rena Report](./code4rena/2023-05-code-arena-report.md)
 #### Scope: [Core Position & Rewards Manager](https://github.com/ajna-finance/ajna-core) and [Grant Coordination Fund](https://github.com/ajna-finance/ajna-grants) Contracts
 #### Findings: 11 High, 14 Medium, 54 Low
 
