@@ -1,8 +1,8 @@
 # Ajna Protocol security audits
+
 ## 1. Sherlock 1st contest (Jan 9, 2023 - Jan 30, 2023)
 #### Contest: https://app.sherlock.xyz/audits/contests/32
-
-#### Report: [Sherlock 1 Report](./sherlock/Contest1.md)
+#### Report: [Sherlock 1 Report](https://audits.sherlock.xyz/contests/32/report) ([Local](./sherlock/Contest1.md))
 #### Scope: [Protocol](https://github.com/ajna-finance/ajna-core) and [Grant Coordination Fund](https://github.com/ajna-finance/ajna-grants) Contracts
 #### Findings: 11 High, 22 Medium
 
@@ -203,3 +203,24 @@
 | **G-11**: Refactor event to avoid emitting data that is already present in transaction data | Gas | Acknowledged |
 | **G-12**: Refactor event to avoid emitting empty data | Gas | Acknowledged |
 | **G-13**: Sort array offchain to check duplicates in O(n) instead of O(n^2) | Gas | Acknowledged |
+
+## 6. Sherlock 2nd contest (June 5, 2023 - June 22, 2023)
+#### Contest: https://audits.sherlock.xyz/contests/75
+#### Report: [Sherlock Final Report](https://audits.sherlock.xyz/contests/75/report) ([Local](./sherlock/Ajna_Final_Report.pdf))
+#### Scope: [Protocol](https://github.com/ajna-finance/ajna-core) and [Grant Coordination Fund](https://github.com/ajna-finance/ajna-grants) Contracts
+#### Findings: 6 High, 6 Medium
+
+| Finding | Severity | Resolution |
+| --- | --- | --- |
+| **Issue H-1**: Pool's kickWithDeposit misses liquidation debt check | High | Fixed |
+| **Issue H-2**: kickWithDeposit removes the deposit without HTP pool state check | High | Fixed |
+| **Issue H-3**: moveQuoteToken updates pool state using intermediary LUP, biasing pool's interest rate calculations | High | Fixed |
+| **Issue H-4**: Settlement can be called when auction period isn't concluded, allowing HPB depositors to game bad debt settlements | High | Fixed |
+| **Issue H-5**: LUP is not recalculated after adding kicking penalty to pool's debt, so kick() updates the pool state with an outdated LUP | High | Fixed |
+| **Issue H-6**: Debt write off can be prohibited by HPB depositor by continuously allocating settlement blocking dust deposits in the higher buckets | High | Fixed |
+| **Issue M-1**: Lenders lose interests and pay deposit fees due to no slippage control | Medium | Fixed |
+| **Issue M-2**: Due to excessive HTP check moveQuoteToken can be unavailable for big deposits | Medium | Fixed |
+| **Issue M-3**: Limit index isn't checked in repayDebt, so user control is void | Medium | Fixed |
+| **Issue M-4**: LenderActions's moveQuoteToken can create a total debt undercoverage | Medium | Fixed |
+| **Issue M-5**: Wrong Inflator used in calculating HTP to determine accrualIndex in accrueInterest | Medium | Fixed |
+| **Issue M-6**: KickerActions uses wrong check to prevent Kickers from using deposits below LUP for KickWithDeposit | Medium | Fixed |
