@@ -279,8 +279,8 @@
 | **I-18**: Unused local variables                                                                           | Informational | Fixed        |
 
 
-## 8. Certek (October 6, 2023 - December 21, 2023)
-#### Report: [Certek Report]() ([Local](./certek/audit_report.pdf))
+## 8. Certora (October 6, 2023 - December 21, 2023)
+#### Report: [Certora Report](https://www.certora.com/reports/ajna) ([Local](./certora/audit_report.pdf))
 #### Scope: [Protocol](https://github.com/ajna-finance/ajna-core) Contracts
 #### Findings: 1 High, 3 Low, 10 Informational, 4 Gas Optimization
 
