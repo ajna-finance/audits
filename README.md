@@ -225,7 +225,33 @@
 | **Issue M-5**: Wrong Inflator used in calculating HTP to determine accrualIndex in accrueInterest | Medium | Fixed |
 | **Issue M-6**: KickerActions uses wrong check to prevent Kickers from using deposits below LUP for KickWithDeposit | Medium | Fixed |
 
-## 7. Kirill (October 6, 2023 - December 21, 2023)
+
+## 7. Fixed Point Solutions & Servo Farms (August 7, 2023 - August 31, 2023)
+#### Report: [FPS & SV Report]() ([Local]())
+#### Scope: [Position Manager](https://github.com/ajna-finance/ajna-core/blob/master/src/PositionManager.sol) and [Grant Coordination Fund](https://github.com/ajna-finance/ajna-grants) Contracts
+#### Findings: 2 Low, 9 Informational, 5 Gas Optimization
+
+| Findings                                                                                                 | Severity        | Resolution             |
+|----------------------------------------------------------------------------------------------------------|-----------------|------------------------|
+| **L-01**: getDelegateReward Does Not Account for Voter's Screening Votes                                 | Low             | Fixed                  |
+| **L-02**: UpdateExchangeRate Event Can Be Emitted With Indexes That Weren’t Updated                      | Low             | Fixed                  |
+| **I-01**: Incomplete Test Coverage (forge test)                                                          | Informational   | Acknowledged           |
+| **I-02**: AlreadyVoted Error Is Unused                                                                   | Informational   | Fixed                  |
+| **I-03**: GrantFund: Potential Tally Incompatibility                                                     | Informational   | Acknowledged           |
+| **I-04**: GrantFund Script: Misleading Transfer Suggestion                                               | Informational   | Fixed                  |
+| **I-05**: Deleting Structs with Internal Mappings Does Not Delete Underlying Mapping Data                | Informational   | Acknowledged           |
+| **I-06**: BurnWrapper: Necessity of ERC20Burnable Unclear                                                | Informational   | Acknowledged           |
+| **I-07**: Missing Documentation of External Calls In PositionManager Functions                           | Informational   | Fixed                  |
+| **I-08**: PositionManager: Missing Tests of ERC721 Pools                                                 | Informational   | Fixed                  |
+| **I-09**: Increase Usability by Removing poolSubsetHash_ Requirement for Most Pools                      | Informational   | Acknowledged           |
+| **Gas-01**: Unnecessary Check and Storage Usage For Surplus Update Status                                | Informational   | Acknowledged           |
+| **Gas-02**: Absolute Value Function Does Not Support All Input Values and Can Be Optimized               | Informational   | Acknowledged           |
+| **Gas-03**: Redundant Check in _updateBucketExchangeRates                                                | Informational   | Fixed                  |
+| **Gas-04**: BurnWrapper: Unnecessary Constructor Parameter                                               | Informational   | Acknowledged           |
+| **Gas-05**: Convert _nextId from uint176 to uint256                                                      | Informational   | Acknowledged           |
+
+
+## 8. Kirill (October 6, 2023 - December 21, 2023)
 #### Report: [Kirill Report](https://github.com/k1rill-fedoseev/audits/blob/master/solo/Ajna.md) ([Local](./kirill/audit_report.md))
 #### Scope: [Protocol](https://github.com/ajna-finance/ajna-core) Contracts
 #### Findings: 1 High, 7 Medium, 17 Low, 18 Informational
@@ -279,7 +305,7 @@
 | **I-18**: Unused local variables                                                                           | Informational | Fixed        |
 
 
-## 8. Certora (October 6, 2023 - December 21, 2023)
+## 9. Certora (October 6, 2023 - December 21, 2023)
 #### Report: [Certora Report](https://www.certora.com/reports/ajna) ([Local](./certora/audit_report.pdf))
 #### Scope: [Protocol](https://github.com/ajna-finance/ajna-core) Contracts
 #### Findings: 1 High, 3 Low, 10 Informational, 4 Gas Optimization
@@ -307,7 +333,7 @@
 | **Gas-03**: Increments/decrements can be unchecked in for-loops                                   | Informational   | Acknowledged |
 | **Gas-04**: ++i costs less gas compared to i++ or i += 1                                          | Informational   | Acknowledged |
 
-## 9. Sherlock 3rd contest (October 13, 2023 - October 27, 2023)
+## 10. Sherlock 3rd contest (October 13, 2023 - October 27, 2023)
 #### Contest: https://audits.sherlock.xyz/contests/114
 #### Report: [Sherlock 3 Report](https://audits.sherlock.xyz/contests/114/report) ([Local](./sherlock/Contest3.pdf))
 #### Scope: [Protocol](https://github.com/ajna-finance/ajna-core) Contracts
@@ -322,25 +348,3 @@
 | **M-2**: Incorrect implementation of BPF leads to kicker losing rewards in a take action             | Medium          | Fixed        |
 | **M-3**: HPB may be incorrectly bankrupt due to use of unscaled value in _forgiveBadDebt             | Medium          | Fixed        |
 | **M-4**: First pool borrower pays extra interest                                                     | Medium          | Disputed     |
-
-# Ajna Rewards and Governance Security Review Findings
-
-| Findings Summary                                                                                         | Severity        | Resolution             |
-|----------------------------------------------------------------------------------------------------------|-----------------|------------------------|
-| **L-01**: getDelegateReward Does Not Account for Voter's Screening Votes                                 | Low             | Fixed                  |
-| **L-02**: UpdateExchangeRate Event Can Be Emitted With Indexes That Weren’t Updated                      | Low             | Fixed                  |
-| **I-01**: Incomplete Test Coverage (forge test)                                                          | Informational   | Acknowledged           |
-| **I-02**: AlreadyVoted Error Is Unused                                                                   | Informational   | Fixed                  |
-| **I-03**: GrantFund: Potential Tally Incompatibility                                                     | Informational   | Acknowledged           |
-| **I-04**: GrantFund Script: Misleading Transfer Suggestion                                               | Informational   | Fixed                  |
-| **I-05**: Deleting Structs with Internal Mappings Does Not Delete Underlying Mapping Data                | Informational   | Acknowledged           |
-| **I-06**: BurnWrapper: Necessity of ERC20Burnable Unclear                                                | Informational   | Acknowledged           |
-| **I-07**: Missing Documentation of External Calls In PositionManager Functions                           | Informational   | Fixed                  |
-| **I-08**: PositionManager: Missing Tests of ERC721 Pools                                                 | Informational   | Fixed                  |
-| **I-09**: Increase Usability by Removing poolSubsetHash_ Requirement for Most Pools                      | Informational   | Acknowledged           |
-| **Gas-01**: Unnecessary Check and Storage Usage For Surplus Update Status                                | Informational   | Acknowledged           |
-| **Gas-02**: Absolute Value Function Does Not Support All Input Values and Can Be Optimized               | Informational   | Acknowledged           |
-| **Gas-03**: Redundant Check in _updateBucketExchangeRates                                                | Informational   | Fixed                  |
-| **Gas-04**: RewardsManager: Code Duplication due to Nested Helpers                                       | Informational   | Acknowledged           |
-| **Gas-05**: BurnWrapper: Unnecessary Constructor Parameter                                               | Informational   | Acknowledged           |
-| **Gas-06**: Convert _nextId from uint176 to uint256                                                      | Informational   | Acknowledged           |
