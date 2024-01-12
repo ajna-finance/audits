@@ -306,7 +306,7 @@
 
 
 ## 9. Certora (October 6, 2023 - December 21, 2023)
-#### Report: [Certora Report](https://www.certora.com/reports/ajna) ([Local](./certora/audit_report.pdf))
+#### Report: [Certora Report](https://www.certora.com/reports/ajna) ([Local](./certora/certora_audit_report.pdf))
 #### Scope: [Protocol](https://github.com/ajna-finance/ajna-core) Contracts
 #### Findings: 1 High, 3 Low, 10 Informational, 4 Gas Optimization
 
@@ -323,7 +323,7 @@
 | **I-03**: Minimal borrow amount mitigation could be avoided by first depositor                    | Informational   | Acknowledged |
 | **I-04**: Minimal borrow amount mitigation could be somewhat bypassed                             | Informational   | Acknowledged |
 | **I-05**: positionIndexes and positions aren’t deleted when deleting positionTokens               | Informational   | Acknowledged |
-| **I-06**: TakerActions.sol TakerLocalVars.factor is unused                                        | Informational   | Acknowledged |
+| **I-06**: TakerActions.sol TakerLocalVars.factor is unused                                        | Informational   | Fixed        |
 | **I-07**: Use string.concat() or bytes.concat() instead of abi.encodePacked                       | Informational   | Acknowledged |
 | **I-08**: Default Visibility for constants                                                        | Informational   | Acknowledged |
 | **I-09**: Event is never emitted                                                                  | Informational   | Acknowledged |
@@ -335,7 +335,7 @@
 
 ## 10. Sherlock 3rd contest (October 13, 2023 - October 27, 2023)
 #### Contest: https://audits.sherlock.xyz/contests/114
-#### Report: [Sherlock 3 Report](https://audits.sherlock.xyz/contests/114/report) ([Local](./sherlock/Contest3.pdf))
+#### Report: [Sherlock 3 Report](https://audits.sherlock.xyz/contests/114/report) ([Local](./sherlock/Contest3.md))
 #### Scope: [Protocol](https://github.com/ajna-finance/ajna-core) Contracts
 #### Findings: 1 High, 4 Medium
 
