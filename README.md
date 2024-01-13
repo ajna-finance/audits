@@ -227,28 +227,28 @@
 
 
 ## 7. Fixed Point Solutions & Servo Farms (August 7, 2023 - August 31, 2023)
-#### Report: [FPS & SV Report]() ([Local]())
-#### Scope: [Position Manager](https://github.com/ajna-finance/ajna-core/blob/master/src/PositionManager.sol) and [Grant Coordination Fund](https://github.com/ajna-finance/ajna-grants) Contracts
-#### Findings: 2 Low, 9 Informational, 5 Gas Optimization
+#### Report: [FPS & SV Report]() [Local](fps_sv/audit_report.pdf)
+#### Scope: [Position Manager](https://github.com/ajna-finance/ajna-core/blob/master/src/PositionManager.sol), Rewards Manager(since depriciated) and [Grant Coordination Fund](https://github.com/ajna-finance/ajna-grants) Contracts
+#### Findings: 2 Low, 8 Informational, 6 Gas Optimization
 
 | Findings                                                                                                 | Severity        | Resolution             |
 |----------------------------------------------------------------------------------------------------------|-----------------|------------------------|
 | **L-01**: getDelegateReward Does Not Account for Voter's Screening Votes                                 | Low             | Fixed                  |
 | **L-02**: UpdateExchangeRate Event Can Be Emitted With Indexes That Weren’t Updated                      | Low             | Fixed                  |
-| **I-01**: Incomplete Test Coverage (forge test)                                                          | Informational   | Acknowledged           |
-| **I-02**: AlreadyVoted Error Is Unused                                                                   | Informational   | Fixed                  |
-| **I-03**: GrantFund: Potential Tally Incompatibility                                                     | Informational   | Acknowledged           |
-| **I-04**: GrantFund Script: Misleading Transfer Suggestion                                               | Informational   | Fixed                  |
-| **I-05**: Deleting Structs with Internal Mappings Does Not Delete Underlying Mapping Data                | Informational   | Acknowledged           |
-| **I-06**: BurnWrapper: Necessity of ERC20Burnable Unclear                                                | Informational   | Acknowledged           |
-| **I-07**: Missing Documentation of External Calls In PositionManager Functions                           | Informational   | Fixed                  |
-| **I-08**: PositionManager: Missing Tests of ERC721 Pools                                                 | Informational   | Fixed                  |
-| **I-09**: Increase Usability by Removing poolSubsetHash_ Requirement for Most Pools                      | Informational   | Acknowledged           |
+| **I-01**: AlreadyVoted Error Is Unused                                                                   | Informational   | Fixed                  |
+| **I-02**: GrantFund: Potential Tally Incompatibility                                                     | Informational   | Acknowledged           |
+| **I-03**: GrantFund Script: Misleading Transfer Suggestion                                               | Informational   | Fixed                  |
+| **I-04**: Deleting Structs with Internal Mappings Does Not De|lete Underlying Mapping Data               | Informational   | Acknowledged           |
+| **I-05**: BurnWrapper: Is ERC20Burnable required                                                         | Informational   | Acknowledged           |
+| **I-06**: Missing Documentation of External Calls In PositionManager Functions                           | Informational   | Fixed                  |
+| **I-07**: PositionManager: Missing Tests of ERC721 Pools                                                 | Informational   | Fixed                  |
+| **I-08**: Increase Usability by Removing poolSubsetHash_ Requirement for Most Pools                      | Informational   | Acknowledged           |
 | **Gas-01**: Unnecessary Check and Storage Usage For Surplus Update Status                                | Informational   | Acknowledged           |
 | **Gas-02**: Absolute Value Function Does Not Support All Input Values and Can Be Optimized               | Informational   | Acknowledged           |
 | **Gas-03**: Redundant Check in _updateBucketExchangeRates                                                | Informational   | Fixed                  |
-| **Gas-04**: BurnWrapper: Unnecessary Constructor Parameter                                               | Informational   | Acknowledged           |
-| **Gas-05**: Convert _nextId from uint176 to uint256                                                      | Informational   | Acknowledged           |
+| **Gas-04**: RewardsManager: Reliance on nested helpers obfuscates code duplication                       | Informational   | Fixed                  |
+| **Gas-05**: BurnWrapper: Unnecessary Constructor Parameter                                               | Informational   | Acknowledged           |
+| **Gas-06**: Convert _nextId from uint176 to uint256                                                      | Informational   | Acknowledged           |
 
 
 ## 8. Kirill (October 6, 2023 - December 21, 2023)
