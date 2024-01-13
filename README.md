@@ -345,6 +345,6 @@
 |------------------------------------------------------------------------------------------------------|-----------------|--------------|
 | **H-1**: Reserves can be stolen by settling artificially created bad debt from them                  | High            | Fixed        |
 | **M-1**: Wrong auctionPrice used in calculating BPF to determine bond reward (or penalty)            | Medium          | Fixed        |
-| **M-2**: Incorrect implementation of BPF leads to kicker losing rewards in a take action             | Medium          | Fixed        |
+| **M-2**: Incorrect implementation of BPF leads to kicker losing rewards in a take action             | Medium          | Disputed     |
 | **M-3**: HPB may be incorrectly bankrupt due to use of unscaled value in _forgiveBadDebt             | Medium          | Fixed        |
-| **M-4**: First pool borrower pays extra interest                                                     | Medium          | Disputed     |
+| **M-4**: First pool borrower pays extra interest                                                     | Medium          | Fixed        |
