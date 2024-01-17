@@ -227,7 +227,7 @@
 
 
 ## 7. Fixed Point Solutions & Servo Farms (August 7, 2023 - August 31, 2023)
-#### Report: [FPS & SV Report](https://github.com/Fixed-Point-Solutions/published-work/blob/master/SmartContractAudits/FPS_and_ServoFarms_Ajna_Ecosystem_Contracts_Assessment_FINAL.pdf) [Local](fps_and_sv/audit_report.pdf)
+#### Report: [FPS & SF Report](https://github.com/Fixed-Point-Solutions/published-work/blob/master/SmartContractAudits/FPS_and_ServoFarms_Ajna_Ecosystem_Contracts_Assessment_FINAL.pdf) [Local](fps_and_sv/audit_report.pdf)
 #### Scope: [Position Manager](https://github.com/ajna-finance/ajna-core/blob/master/src/PositionManager.sol), Rewards Manager(since depriciated) and [Grant Coordination Fund](https://github.com/ajna-finance/ajna-grants) Contracts
 #### Findings: 2 Low, 8 Informational, 6 Gas Optimization
 
