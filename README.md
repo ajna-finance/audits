@@ -206,7 +206,7 @@
 
 ## 6. Sherlock 2nd contest (June 5, 2023 - June 22, 2023)
 #### Contest: https://audits.sherlock.xyz/contests/75
-#### Report: [Sherlock Final Report](https://audits.sherlock.xyz/contests/75/report) ([Local](./sherlock/Ajna_Final_Report.pdf))
+#### Report: [Sherlock 2 Report](https://audits.sherlock.xyz/contests/75/report) ([Local](./sherlock/Contest2.pdf))
 #### Scope: [Protocol](https://github.com/ajna-finance/ajna-core) and [Grant Coordination Fund](https://github.com/ajna-finance/ajna-grants) Contracts
 #### Findings: 6 High, 6 Medium
 
@@ -224,3 +224,127 @@
 | **Issue M-4**: LenderActions's moveQuoteToken can create a total debt undercoverage | Medium | Fixed |
 | **Issue M-5**: Wrong Inflator used in calculating HTP to determine accrualIndex in accrueInterest | Medium | Fixed |
 | **Issue M-6**: KickerActions uses wrong check to prevent Kickers from using deposits below LUP for KickWithDeposit | Medium | Fixed |
+
+
+## 7. Fixed Point Solutions & Servo Farms (August 7, 2023 - August 31, 2023)
+#### Report: [FPS & SF Report](https://github.com/Fixed-Point-Solutions/published-work/blob/master/SmartContractAudits/FPS_and_ServoFarms_Ajna_Ecosystem_Contracts_Assessment_FINAL.pdf) [Local](fps_and_sv/audit_report.pdf)
+#### Scope: [Position Manager](https://github.com/ajna-finance/ajna-core/blob/master/src/PositionManager.sol), Rewards Manager(since depriciated) and [Grant Coordination Fund](https://github.com/ajna-finance/ajna-grants) Contracts
+#### Findings: 2 Low, 8 Informational, 6 Gas Optimization
+
+| Findings                                                                                                 | Severity        | Resolution             |
+|----------------------------------------------------------------------------------------------------------|-----------------|------------------------|
+| **L-01**: getDelegateReward Does Not Account for Voter's Screening Votes                                 | Low             | Fixed                  |
+| **L-02**: UpdateExchangeRate Event Can Be Emitted With Indexes That Weren’t Updated                      | Low             | Fixed                  |
+| **I-01**: AlreadyVoted Error Is Unused                                                                   | Informational   | Fixed                  |
+| **I-02**: GrantFund: Potential Tally Incompatibility                                                     | Informational   | Acknowledged           |
+| **I-03**: GrantFund Script: Misleading Transfer Suggestion                                               | Informational   | Fixed                  |
+| **I-04**: Deleting Structs with Internal Mappings Does Not De|lete Underlying Mapping Data               | Informational   | Acknowledged           |
+| **I-05**: BurnWrapper: Is ERC20Burnable required                                                         | Informational   | Acknowledged           |
+| **I-06**: Missing Documentation of External Calls In PositionManager Functions                           | Informational   | Fixed                  |
+| **I-07**: PositionManager: Missing Tests of ERC721 Pools                                                 | Informational   | Fixed                  |
+| **I-08**: Increase Usability by Removing poolSubsetHash_ Requirement for Most Pools                      | Informational   | Acknowledged           |
+| **Gas-01**: Unnecessary Check and Storage Usage For Surplus Update Status                                | Informational   | Acknowledged           |
+| **Gas-02**: Absolute Value Function Does Not Support All Input Values and Can Be Optimized               | Informational   | Acknowledged           |
+| **Gas-03**: Redundant Check in _updateBucketExchangeRates                                                | Informational   | Fixed                  |
+| **Gas-04**: RewardsManager: Reliance on nested helpers obfuscates code duplication                       | Informational   | Fixed                  |
+| **Gas-05**: BurnWrapper: Unnecessary Constructor Parameter                                               | Informational   | Acknowledged           |
+| **Gas-06**: Convert _nextId from uint176 to uint256                                                      | Informational   | Acknowledged           |
+
+
+## 8. Kirill (October 6, 2023 - December 21, 2023)
+#### Report: [Kirill Report](https://github.com/k1rill-fedoseev/audits/blob/master/solo/Ajna.md) ([Local](./kirill/audit_report.md))
+#### Scope: [Protocol](https://github.com/ajna-finance/ajna-core) Contracts
+#### Findings: 1 High, 7 Medium, 17 Low, 18 Informational
+
+# Findings Summary
+
+| Findings                                                                                                   | Severity      | Resolution   |
+|------------------------------------------------------------------------------------------------------------|---------------|--------------|
+| **H-01**: Large borrowers bear a substantial economic risk of spurious liquidations                        | High          | Acknowledged |
+| **M-01**: Reserve auction starting price calculation contradicts the whitepaper                            | Medium        | Fixed        |
+| **M-02**: Positions with threshold price below `MIN_PRICE` cannot be kicked                                | Medium        | Fixed        |
+| **M-03**: ERC20 pool creation may be grieved by frontrunners                                               | Medium        | Acknowledged |
+| **M-04**: Bond reward amount implicitly depends on the order of takes                                      | Medium        | Fixed        |
+| **M-05**: `addCollateral` allows to manipulate `LUP` and bypass deposit fee                                | Medium        | Fixed        |         
+| **M-06**: Dust collateral checks may lead to unexpected reverts in external integrations                   | Medium        | Acknowledged |
+| **M-07**: Liquidation of positions with bad debt can cause losses for `HPB` depositors                     | Medium        | Fixed        |
+| **L-01**: Dust checks for quote tokens are inconsistent                                                    | Low           | Fixed        |
+| **L-02**: Some unit tests are not properly executed                                                        | Low           | Fixed        |
+| **L-03**: Redundant call to `ecrecover` in PermitERC721                                                    | Low           | Acknowledged |
+| **L-04**: PermitERC721 allows replay attacks                                                               | Low           | Acknowledged |
+| **L-05**: `maxQuoteToken_` parameter in `_lpToQuoteToken` is redundant                                     | Low           | Fixed        |
+| **L-06**: Outdated `prb-math` external dependency                                                          | Low           | Acknowledged |
+| **L-07**: Unbounded storage list iteration in `getDeployedPoolsList`                                       | Low           | Fixed        |
+| **L-08**: Reserve auction kick condition can be simplified                                                 | Low           | Fixed        |
+| **L-09**: Inconsistency between auction curve price calculations                                           | Low           | Acknowledged |
+| **L-10**: Missing boundary check on `auctionPrice`                                                         | Low           | Acknowledged |
+| **L-11**: `_rebalanceTokens` does nothing in `ERC721Pool::take`                                            | Low           | Acknowledged |
+| **L-12**: Confusing rounding in `_indexOf`                                                                 | Low           | Acknowledged |
+| **L-13**: Non-optimal `takeReserves` in case Ajna token is also the quote token in the pool                | Low           | Acknowledged |
+| **L-14**: Error-prone logic in `memorializePositions`                                                      | Low           | Acknowledged |
+| **L-15**: Bucket bankruptcy checks are inconsistent                                                        | Low           | Acknowledged |
+| **L-16**: Unassigned return value in `findIndexAndSumOfSum`                                                | Low           | Acknowledged |
+| **L-17**: `kickReserveAuction` uses outdated pool state                                                    | Low           | Acknowledged |
+| **I-01**: Precompute value of `PRBMathSD59x18.log2(FLOAT_STEP_INT)`                                        | Informational | Acknowledged |
+| **I-02**: Simplify EMAs weight calculation                                                                 | Informational | Acknowledged |
+| **I-03**: Unused error and event definitions                                                               | Informational | Fixed        |
+| **I-04**: Assembly optimization in `lsb`                                                                   | Informational | Acknowledged |
+| **I-05**: Gas optimization in `_auctionPrice`                                                              | Informational | Acknowledged |
+| **I-06**: Unnecessary cap for unutilized deposit fee                                                       | Informational | Fixed        |
+| **I-07**: Simplify `_getCollateralDustPricePrecisionAdjustment`                                            | Informational | Acknowledged |
+| **I-08**: Simplify index boundary checks in `_priceAt`                                                     | Informational | Acknowledged |
+| **I-09**: Redundant `SSTORE` in `ERC721Pool::repayDebt`                                                    | Informational | Acknowledged |
+| **I-10**: Reimplement `ERC721::removeCollateral` using `LenderActions.removeMaxCollateral`                 | Informational | Acknowledged |
+| **I-11**: Miners / validators / sequencers are able to manipulate block timestamps to extract MEV          | Informational | Acknowledged |
+| **I-12**: Simplify condition in `_updateT0Debt2ToCollateral`                                               | Informational | Acknowledged |
+| **I-13**: Maths usage optimization                                                                         | Informational | Acknowledged |
+| **I-14**: Redundant checks in `prefixSum`                                                                  | Informational | Acknowledged |
+| **I-15**: Redundant `pool_` function parameter in `PositionManager`                                        | Informational | Acknowledged |
+| **I-16**: Redundant return values in `findIndexAndSumOfSum`                                                | Informational | Acknowledged |
+| **I-17**: Duplicated `lpToQuoteTokens` computation in `_removeMaxDeposit`                                  | Informational | Acknowledged |
+| **I-18**: Unused local variables                                                                           | Informational | Fixed        |
+
+
+## 9. Certora (October 6, 2023 - December 21, 2023)
+#### Report: [Certora Report](https://www.certora.com/reports/ajna) ([Local](./certora/certora_audit_report.pdf))
+#### Scope: [Protocol](https://github.com/ajna-finance/ajna-core) Contracts
+#### Findings: 1 High, 3 Low, 10 Informational, 4 Gas Optimization
+
+# Findings Summary
+
+| Findings                                                                                          | Severity        | Resolution   |
+|---------------------------------------------------------------------------------------------------|-----------------|--------------|
+| **H-01**: A manipulation on LUP and HTP can drain the reserves in favor of an attacker            | High            | Fixed        |
+| **L-01**: Calculation of the repay-amount in bucketTake() is not bounded as intended              | Low             | Fixed        |
+| **L-02**: A deposit take can lead to HTP crossing the LUP                                         | Low             | Acknowledged |
+| **L-03**: MoveQuoteTokens can lose small amount of deposits, pushing LUP below HTP in an edge case| Low             | Acknowledged |
+| **I-01**: Lender may raise HTP to steal interest rewards from lender buckets under LUP            | Informational   | Acknowledged |
+| **I-02**: An attacker can kick everyone in the system, forcing lenders into a risk/gamble         | Informational   | Acknowledged |
+| **I-03**: Minimal borrow amount mitigation could be avoided by first depositor                    | Informational   | Acknowledged |
+| **I-04**: Minimal borrow amount mitigation could be somewhat bypassed                             | Informational   | Acknowledged |
+| **I-05**: positionIndexes and positions aren’t deleted when deleting positionTokens               | Informational   | Acknowledged |
+| **I-06**: TakerActions.sol TakerLocalVars.factor is unused                                        | Informational   | Fixed        |
+| **I-07**: Use string.concat() or bytes.concat() instead of abi.encodePacked                       | Informational   | Acknowledged |
+| **I-08**: Default Visibility for constants                                                        | Informational   | Acknowledged |
+| **I-09**: Event is never emitted                                                                  | Informational   | Acknowledged |
+| **I-10**: Change uint to uint256                                                                  | Informational   | Acknowledged |
+| **Gas-01**: State variables only set in the constructor should be declared immutable              | Informational   | Acknowledged |
+| **Gas-02**: uint256 to bool mapping: Utilizing Bitmaps to save on Gas                             | Informational   | Acknowledged |
+| **Gas-03**: Increments/decrements can be unchecked in for-loops                                   | Informational   | Acknowledged |
+| **Gas-04**: ++i costs less gas compared to i++ or i += 1                                          | Informational   | Acknowledged |
+
+## 10. Sherlock 3rd contest (October 13, 2023 - October 27, 2023)
+#### Contest: https://audits.sherlock.xyz/contests/114
+#### Report: [Sherlock 3 Report](https://audits.sherlock.xyz/contests/114/report) ([Local](./sherlock/Contest3.md))
+#### Scope: [Protocol](https://github.com/ajna-finance/ajna-core) Contracts
+#### Findings: 1 High, 4 Medium
+
+# Findings Summary
+
+| Findings                                                                                             | Severity        | Resolution   |
+|------------------------------------------------------------------------------------------------------|-----------------|--------------|
+| **H-1**: Reserves can be stolen by settling artificially created bad debt from them                  | High            | Fixed        |
+| **M-1**: Wrong auctionPrice used in calculating BPF to determine bond reward (or penalty)            | Medium          | Fixed        |
+| **M-2**: Incorrect implementation of BPF leads to kicker losing rewards in a take action             | Medium          | Disputed     |
+| **M-3**: HPB may be incorrectly bankrupt due to use of unscaled value in _forgiveBadDebt             | Medium          | Fixed        |
+| **M-4**: First pool borrower pays extra interest                                                     | Medium          | Fixed        |
